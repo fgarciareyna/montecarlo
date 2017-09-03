@@ -40,10 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DistribucionAleatoria.cs" />
-    <Compile Include="Probabilidad.cs" />
-    <Compile Include="PromedioAcumulado.cs" />
-    <Compile Include="PromedioCantidadFija.cs" />
+    <Compile Include="Acumuladores\IAcumulador.cs" />
+    <Compile Include="Acumuladores\TotalAcumulado.cs" />
+    <Compile Include="Acumuladores\TotalCantidadFija.cs" />
+    <Compile Include="TablaDistribucion\DistribucionAleatoria.cs" />
+    <Compile Include="TablaDistribucion\Probabilidad.cs" />
+    <Compile Include="Acumuladores\PromedioAcumulado.cs" />
+    <Compile Include="Acumuladores\PromedioCantidadFija.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Montecarlo
+namespace Montecarlo.Acumuladores
 {
-    public class PromedioAcumulado
+    public class PromedioAcumulado : IAcumulador
     {
         public PromedioAcumulado()
         {

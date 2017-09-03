@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Montecarlo
+namespace Montecarlo.Acumuladores
 {
-    public class PromedioCantidadFija
+    public class TotalCantidadFija : IAcumulador
     {
-        public PromedioCantidadFija(int cantidad)
+        public TotalCantidadFija(int cantidad)
         {
             Cantidad = cantidad;
             Valores = new List<decimal>(Cantidad);
@@ -18,7 +18,7 @@ namespace Montecarlo
 
             Valores.Add(valor);
 
-            var promedio = Valores.Average();
+            var promedio = Valores.Sum();
 
             return promedio;
         }
