@@ -131,15 +131,16 @@ namespace TP4
             return true;
         }
 
-        private void Limpiar()
+        private void Limpiar(string estrategia)
         {
             tb_simulaciones.Rows.Clear();
-            graph.Series[0].Points.Clear();
+            graph.Series[estrategia].Points.Clear();
         }
 
         private void SimularA()
         {
-            Limpiar();
+            const string estrategia = "Estrategia A";
+            Limpiar(estrategia);
 
             // Pedir 10 decenas cada 7 días
             const int cantidadAPedir = 10;
@@ -190,7 +191,7 @@ namespace TP4
                 }
 
                 //Gráfico
-                graph.Series[0].Points.Add(new DataPoint(dia, costoPromedio));
+                graph.Series[estrategia].Points.Add(new DataPoint(dia, costoPromedio));
             }
 
             //Resultado
@@ -201,7 +202,8 @@ namespace TP4
 
         private void SimularB()
         {
-            Limpiar();
+            const string estrategia = "Estrategia B";
+            Limpiar(estrategia);
 
             // Pedir la demanda de los últimos 10 días cada 10 días
             var acumuladorCantidadAPedir = new TotalCantidadFija(10);
@@ -258,7 +260,7 @@ namespace TP4
                 }
 
                 //Gráfico
-                graph.Series[0].Points.Add(new DataPoint(dia, costoPromedio));
+                graph.Series[estrategia].Points.Add(new DataPoint(dia, costoPromedio));
             }
 
             //Resultado
@@ -269,7 +271,8 @@ namespace TP4
 
         private void SimularC()
         {
-            Limpiar();
+            const string estrategia = "Estrategia C";
+            Limpiar(estrategia);
 
             // Pedir la demanda promedio de los últimos 10 días cada 10 días
             var acumuladorCantidadAPedir = new PromedioCantidadFija(10);
@@ -326,7 +329,7 @@ namespace TP4
                 }
 
                 //Gráfico
-                graph.Series[0].Points.Add(new DataPoint(dia, costoPromedio));
+                graph.Series[estrategia].Points.Add(new DataPoint(dia, costoPromedio));
             }
 
             //Resultado

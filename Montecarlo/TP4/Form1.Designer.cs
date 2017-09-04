@@ -31,6 +31,9 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.txt_cant_iteraciones = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -451,11 +454,23 @@
             series1.ChartArea = "CostoPromedio";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
             series1.Legend = "Legend1";
-            series1.Name = "Costo Promedio";
+            series1.Name = "Estrategia A";
+            series2.ChartArea = "CostoPromedio";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series2.Legend = "Legend1";
+            series2.Name = "Estrategia B";
+            series3.ChartArea = "CostoPromedio";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series3.Legend = "Legend1";
+            series3.Name = "Estrategia C";
             this.graph.Series.Add(series1);
+            this.graph.Series.Add(series2);
+            this.graph.Series.Add(series3);
             this.graph.Size = new System.Drawing.Size(1354, 268);
             this.graph.TabIndex = 15;
             this.graph.Text = "chart1";
+            title1.Name = "Costo Diario Promedio";
+            this.graph.Titles.Add(title1);
             // 
             // flowLayoutPanel1
             // 
