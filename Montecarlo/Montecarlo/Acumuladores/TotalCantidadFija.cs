@@ -8,7 +8,7 @@ namespace Montecarlo.Acumuladores
         public TotalCantidadFija(int cantidad)
         {
             Cantidad = cantidad;
-            Valores = new List<double>(Cantidad);
+            Valores = new List<double>();
         }
 
         public double CalcularSiguiente(double valor)
