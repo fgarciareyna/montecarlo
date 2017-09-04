@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Montecarlo.Acumuladores;
@@ -9,12 +11,18 @@ namespace TP4
 {
     public partial class Principal : Form
     {
-        private DistribucionAleatoria _demanda;
-        private DistribucionAleatoria _demora;
+        private readonly DistribucionAleatoria _demanda;
+        private readonly DistribucionAleatoria _demora;
+        private const int Decimales = 3;
 
         public Principal()
         {
+            var culture = CultureInfo.InvariantCulture;
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
             InitializeComponent();
+            btn_comparar.Enabled = false;
             _demanda = new DistribucionAleatoria(new List<Probabilidad>()
             {
                 new Probabilidad(0, 0.05),
@@ -123,15 +131,23 @@ namespace TP4
             return true;
         }
 
+        private void Limpiar()
+        {
+            tb_simulaciones.Rows.Clear();
+            graph.Series[0].Points.Clear();
+        }
+
         private void SimularA()
         {
+            Limpiar();
+
             // Pedir 10 decenas cada 7 días
             const int cantidadAPedir = 10;
             const int diasEntrePedidos = 7;
 
             var stock = int.Parse(txt_stock_inicial.Text);
-            var precioAlmacenamiento = double.Parse(txt_costo_alm.Text);
-            var precioFaltante = double.Parse(txt_costo_falt.Text);
+            var precioAlmacenamiento = Math.Round(double.Parse(txt_costo_alm.Text), Decimales);
+            var precioFaltante = Math.Round(double.Parse(txt_costo_falt.Text), Decimales);
 
             var simulaciones = int.Parse(txt_cant_iteraciones.Text);
             var mostrarDesde = int.Parse(txt_mostrar_desde.Text);
@@ -146,20 +162,26 @@ namespace TP4
 
             for (var dia = 1; dia <= simulaciones; dia++)
             {
+                //Pedido
                 diasProximoPedido = diasProximoPedido > 0 ? diasProximoPedido - 1 : diasEntrePedidos;
-                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : 0;
-                var costoPedido = demora == 0 && diasProximoPedido == 0 ? CostoPedido.ObtenerCosto(cantidadAPedir) : 0;
-                var demanda = (int)_demanda.ObtenerValor();
-                var ventas = Math.Min(demanda, stock);
-                var costoFaltante = (demanda - ventas) * precioFaltante;
-                stock -= ventas;
-                var costoAlmacenamiento = stock * precioAlmacenamiento;
-                var costoTotal = costoFaltante + costoAlmacenamiento + costoPedido;
-                var costoAcumulado = acumuladorTotalCosto.CalcularSiguiente(costoTotal);
-                costoPromedio = acumuladorPromedioCosto.CalcularSiguiente(costoTotal);
-                var pedido = demora == 1 ? cantidadAPedir : 0;
+                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : -1;
+                var pedido = demora == 0 ? cantidadAPedir : 0;
                 stock += pedido;
 
+                //Ventas
+                var demanda = (int)_demanda.ObtenerValor();
+                var ventas = Math.Min(demanda, stock);
+                stock -= ventas;
+
+                //Costos
+                var costoPedido = demora == 0 && diasProximoPedido == 0 ? Math.Round(CostoPedido.ObtenerCosto(cantidadAPedir), Decimales) : 0;
+                var costoFaltante = Math.Round((demanda - ventas) * precioFaltante, Decimales);
+                var costoAlmacenamiento = Math.Round(stock * precioAlmacenamiento, Decimales);
+                var costoTotal = Math.Round(costoFaltante + costoAlmacenamiento + costoPedido, Decimales);
+                var costoAcumulado = Math.Round(acumuladorTotalCosto.CalcularSiguiente(costoTotal), Decimales);
+                costoPromedio = Math.Round(acumuladorPromedioCosto.CalcularSiguiente(costoTotal), Decimales);
+
+                //Tabla
                 if (mostrarDesde <= dia && dia < mostrarDesde + cantidadAMostrar)
                 {
                     tb_simulaciones.Rows.Add(dia, demanda, ventas, stock, costoAlmacenamiento, costoFaltante,
@@ -167,23 +189,27 @@ namespace TP4
                         diasProximoPedido, demora, pedido);
                 }
 
+                //Gráfico
                 graph.Series[0].Points.Add(new DataPoint(dia, costoPromedio));
             }
 
+            //Resultado
             txt_res_A.Text = costoPromedio.ToString();
 
             HabilitarComparacion();
         }
 
-        private void SimularB() //TODO: Modificar
+        private void SimularB()
         {
-            // Pedir 10 decenas cada 7 días
-            const int cantidadAPedir = 10;
-            const int diasEntrePedidos = 7;
+            Limpiar();
+
+            // Pedir la demanda de los últimos 10 días cada 10 días
+            var acumuladorCantidadAPedir = new TotalCantidadFija(10);
+            const int diasEntrePedidos = 10;
 
             var stock = int.Parse(txt_stock_inicial.Text);
-            var precioAlmacenamiento = double.Parse(txt_costo_alm.Text);
-            var precioFaltante = double.Parse(txt_costo_falt.Text);
+            var precioAlmacenamiento = Math.Round(double.Parse(txt_costo_alm.Text), Decimales);
+            var precioFaltante = Math.Round(double.Parse(txt_costo_falt.Text), Decimales);
 
             var simulaciones = int.Parse(txt_cant_iteraciones.Text);
             var mostrarDesde = int.Parse(txt_mostrar_desde.Text);
@@ -194,41 +220,64 @@ namespace TP4
 
             var diasProximoPedido = diasEntrePedidos;
             var demora = 0;
+            var cantidadAPedir = 0;
+            double costoPromedio = 0;
 
             for (var dia = 1; dia <= simulaciones; dia++)
             {
+                //Pedido
                 diasProximoPedido = diasProximoPedido > 0 ? diasProximoPedido - 1 : diasEntrePedidos;
-                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : 0;
-                var costoPedido = demora == 0 && diasProximoPedido == 0 ? CostoPedido.ObtenerCosto(cantidadAPedir) : 0;
+                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : -1;
                 var demanda = (int)_demanda.ObtenerValor();
-                var ventas = Math.Min(demanda, stock);
-                var costoFaltante = (demanda - ventas) * precioFaltante;
-                stock -= ventas;
-                var costoAlmacenamiento = stock * precioAlmacenamiento;
-                var costoTotal = costoFaltante + costoAlmacenamiento + costoPedido;
-                var costoAcumulado = acumuladorTotalCosto.CalcularSiguiente(costoTotal);
-                var costoPromedio = acumuladorPromedioCosto.CalcularSiguiente(costoTotal);
-                var pedido = demora == 1 ? cantidadAPedir : 0;
+                var cantidad = (int) acumuladorCantidadAPedir.CalcularSiguiente(demanda);
+
+                if (diasProximoPedido == 0)
+                    cantidadAPedir = cantidad;
+
+                var pedido = demora == 0 ? cantidadAPedir : 0;
                 stock += pedido;
 
+                //Ventas
+                var ventas = Math.Min(demanda, stock);
+                stock -= ventas;
+
+                //Costos
+                var costoPedido = demora == 0 && diasProximoPedido == 0 ? Math.Round(CostoPedido.ObtenerCosto(cantidadAPedir), Decimales) : 0;
+                var costoFaltante = Math.Round((demanda - ventas) * precioFaltante, Decimales);
+                var costoAlmacenamiento = Math.Round(stock * precioAlmacenamiento, Decimales);
+                var costoTotal = Math.Round(costoFaltante + costoAlmacenamiento + costoPedido, Decimales);
+                var costoAcumulado = Math.Round(acumuladorTotalCosto.CalcularSiguiente(costoTotal), Decimales);
+                costoPromedio = Math.Round(acumuladorPromedioCosto.CalcularSiguiente(costoTotal), Decimales);
+
+                //Tabla
                 if (mostrarDesde <= dia && dia < mostrarDesde + cantidadAMostrar)
                 {
                     tb_simulaciones.Rows.Add(dia, demanda, ventas, stock, costoAlmacenamiento, costoFaltante,
                         costoPedido, costoTotal, costoAcumulado, costoPromedio,
                         diasProximoPedido, demora, pedido);
                 }
+
+                //Gráfico
+                graph.Series[0].Points.Add(new DataPoint(dia, costoPromedio));
             }
+
+            //Resultado
+            txt_res_B.Text = costoPromedio.ToString();
+
+            HabilitarComparacion();
         }
 
-        private void SimularC() //TODO: Modificar
+        private void SimularC()
         {
-            // Pedir 10 decenas cada 7 días
-            const int cantidadAPedir = 10;
-            const int diasEntrePedidos = 7;
+            Limpiar();
+
+            // Pedir la demanda promedio de los últimos 10 días cada 10 días
+            var acumuladorCantidadAPedir = new PromedioCantidadFija(10);
+            const int diasEntrePedidos = 10;
 
             var stock = int.Parse(txt_stock_inicial.Text);
-            var precioAlmacenamiento = double.Parse(txt_costo_alm.Text);
-            var precioFaltante = double.Parse(txt_costo_falt.Text);
+            var precioAlmacenamiento = Math.Round(double.Parse(txt_costo_alm.Text), Decimales);
+            var precioFaltante = Math.Round(double.Parse(txt_costo_falt.Text), Decimales);
 
             var simulaciones = int.Parse(txt_cant_iteraciones.Text);
             var mostrarDesde = int.Parse(txt_mostrar_desde.Text);
@@ -239,35 +288,81 @@ namespace TP4
 
             var diasProximoPedido = diasEntrePedidos;
             var demora = 0;
+            var cantidadAPedir = 0;
+            double costoPromedio = 0;
 
             for (var dia = 1; dia <= simulaciones; dia++)
             {
+                //Pedido
                 diasProximoPedido = diasProximoPedido > 0 ? diasProximoPedido - 1 : diasEntrePedidos;
-                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : 0;
-                var costoPedido = demora == 0 && diasProximoPedido == 0 ? CostoPedido.ObtenerCosto(cantidadAPedir) : 0;
+                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : -1;
                 var demanda = (int)_demanda.ObtenerValor();
-                var ventas = Math.Min(demanda, stock);
-                var costoFaltante = (demanda - ventas) * precioFaltante;
-                stock -= ventas;
-                var costoAlmacenamiento = stock * precioAlmacenamiento;
-                var costoTotal = costoFaltante + costoAlmacenamiento + costoPedido;
-                var costoAcumulado = acumuladorTotalCosto.CalcularSiguiente(costoTotal);
-                var costoPromedio = acumuladorPromedioCosto.CalcularSiguiente(costoTotal);
-                var pedido = demora == 1 ? cantidadAPedir : 0;
+                var cantidad = (int)acumuladorCantidadAPedir.CalcularSiguiente(demanda);
+
+                if (diasProximoPedido == 0)
+                    cantidadAPedir = cantidad;
+
+                var pedido = demora == 0 ? cantidadAPedir : 0;
                 stock += pedido;
 
+                //Ventas
+                var ventas = Math.Min(demanda, stock);
+                stock -= ventas;
+
+                //Costos
+                var costoPedido = demora == 0 && diasProximoPedido == 0 ? Math.Round(CostoPedido.ObtenerCosto(cantidadAPedir), Decimales) : 0;
+                var costoFaltante = Math.Round((demanda - ventas) * precioFaltante, Decimales);
+                var costoAlmacenamiento = Math.Round(stock * precioAlmacenamiento, Decimales);
+                var costoTotal = Math.Round(costoFaltante + costoAlmacenamiento + costoPedido, Decimales);
+                var costoAcumulado = Math.Round(acumuladorTotalCosto.CalcularSiguiente(costoTotal), Decimales);
+                costoPromedio = Math.Round(acumuladorPromedioCosto.CalcularSiguiente(costoTotal), Decimales);
+
+                //Tabla
                 if (mostrarDesde <= dia && dia < mostrarDesde + cantidadAMostrar)
                 {
                     tb_simulaciones.Rows.Add(dia, demanda, ventas, stock, costoAlmacenamiento, costoFaltante,
                         costoPedido, costoTotal, costoAcumulado, costoPromedio,
                         diasProximoPedido, demora, pedido);
                 }
+
+                //Gráfico
+                graph.Series[0].Points.Add(new DataPoint(dia, costoPromedio));
             }
+
+            //Resultado
+            txt_res_C.Text = costoPromedio.ToString();
+
+            HabilitarComparacion();
         }
 
         private void HabilitarComparacion()
         {
-            
+            if (!string.IsNullOrEmpty(txt_res_A.Text)
+                && !string.IsNullOrEmpty(txt_res_B.Text)
+                && !string.IsNullOrEmpty(txt_res_C.Text))
+            {
+                btn_comparar.Enabled = true;
+            }
+        }
+
+        private void btn_comparar_Click(object sender, EventArgs e)
+        {
+            var resultadoA = Math.Round(double.Parse(txt_res_A.Text), Decimales);
+            var resultadoB = Math.Round(double.Parse(txt_res_B.Text), Decimales);
+            var resultadoC = Math.Round(double.Parse(txt_res_C.Text), Decimales);
+
+            string ganadora;
+
+            if (resultadoA >= Math.Max(resultadoB, resultadoC))
+                ganadora = "A";
+
+            else if (resultadoB >= resultadoC)
+                ganadora = "B";
+
+            else
+                ganadora = "C";
+
+            MessageBox.Show($@"La estrategia más conveniente es la {ganadora}");
         }
     }
 }

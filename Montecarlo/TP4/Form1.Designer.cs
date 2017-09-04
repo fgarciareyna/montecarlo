@@ -70,7 +70,6 @@
             this.lnk_C = new System.Windows.Forms.LinkLabel();
             this.lnk_B = new System.Windows.Forms.LinkLabel();
             this.lnk_A = new System.Windows.Forms.LinkLabel();
-            this.btn_graficar = new System.Windows.Forms.Button();
             this.btn_comparar = new System.Windows.Forms.Button();
             this.graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -430,15 +429,6 @@
             this.lnk_A.TabStop = true;
             this.lnk_A.Text = "Estrategia A:";
             // 
-            // btn_graficar
-            // 
-            this.btn_graficar.Location = new System.Drawing.Point(661, 56);
-            this.btn_graficar.Name = "btn_graficar";
-            this.btn_graficar.Size = new System.Drawing.Size(75, 23);
-            this.btn_graficar.TabIndex = 13;
-            this.btn_graficar.Text = "Graficar";
-            this.btn_graficar.UseVisualStyleBackColor = true;
-            // 
             // btn_comparar
             // 
             this.btn_comparar.Location = new System.Drawing.Point(661, 82);
@@ -447,6 +437,7 @@
             this.btn_comparar.TabIndex = 14;
             this.btn_comparar.Text = "Comparar";
             this.btn_comparar.UseVisualStyleBackColor = true;
+            this.btn_comparar.Click += new System.EventHandler(this.btn_comparar_Click);
             // 
             // graph
             // 
@@ -482,7 +473,6 @@
             this.Controls.Add(this.tb_simulaciones);
             this.Controls.Add(this.graph);
             this.Controls.Add(this.btn_comparar);
-            this.Controls.Add(this.btn_graficar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -544,7 +534,6 @@
         private System.Windows.Forms.LinkLabel lnk_C;
         private System.Windows.Forms.LinkLabel lnk_B;
         private System.Windows.Forms.LinkLabel lnk_A;
-        private System.Windows.Forms.Button btn_graficar;
         private System.Windows.Forms.Button btn_comparar;
         private System.Windows.Forms.DataVisualization.Charting.Chart graph;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
