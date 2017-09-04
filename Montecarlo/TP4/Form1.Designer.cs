@@ -182,7 +182,7 @@
             this.tb_simulaciones.Location = new System.Drawing.Point(0, 129);
             this.tb_simulaciones.Name = "tb_simulaciones";
             this.tb_simulaciones.ReadOnly = true;
-            this.tb_simulaciones.Size = new System.Drawing.Size(1436, 270);
+            this.tb_simulaciones.Size = new System.Drawing.Size(1354, 270);
             this.tb_simulaciones.TabIndex = 9;
             // 
             // col_dia
@@ -453,7 +453,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Costo Promedio";
             this.graph.Series.Add(series1);
-            this.graph.Size = new System.Drawing.Size(1436, 268);
+            this.graph.Size = new System.Drawing.Size(1354, 268);
             this.graph.TabIndex = 15;
             this.graph.Text = "chart1";
             // 
@@ -462,14 +462,14 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1436, 129);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1354, 129);
             this.flowLayoutPanel1.TabIndex = 16;
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1436, 667);
+            this.ClientSize = new System.Drawing.Size(1354, 667);
             this.Controls.Add(this.tb_simulaciones);
             this.Controls.Add(this.graph);
             this.Controls.Add(this.btn_comparar);
@@ -481,6 +481,7 @@
             this.Name = "Principal";
             this.Text = "De Franceschi Andrea 62127 - García Majorel Álvaro 61856 - García Reyna Facundo 6" +
     "3583 - Oliveda Claudio 49594 - Varela Sofía 65126";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.tb_simulaciones)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
