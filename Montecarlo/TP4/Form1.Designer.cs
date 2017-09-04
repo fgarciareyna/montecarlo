@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.txt_cant_iteraciones = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,18 +61,19 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txt_mostrar_cant = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lnk_A = new System.Windows.Forms.LinkLabel();
-            this.lnk_B = new System.Windows.Forms.LinkLabel();
-            this.lnk_C = new System.Windows.Forms.LinkLabel();
-            this.rad_A = new System.Windows.Forms.RadioButton();
-            this.rad_B = new System.Windows.Forms.RadioButton();
-            this.rad_C = new System.Windows.Forms.RadioButton();
-            this.txt_res_A = new System.Windows.Forms.TextBox();
-            this.txt_res_B = new System.Windows.Forms.TextBox();
             this.txt_res_C = new System.Windows.Forms.TextBox();
+            this.txt_res_B = new System.Windows.Forms.TextBox();
+            this.txt_res_A = new System.Windows.Forms.TextBox();
+            this.rad_C = new System.Windows.Forms.RadioButton();
+            this.rad_B = new System.Windows.Forms.RadioButton();
+            this.rad_A = new System.Windows.Forms.RadioButton();
+            this.lnk_C = new System.Windows.Forms.LinkLabel();
+            this.lnk_B = new System.Windows.Forms.LinkLabel();
+            this.lnk_A = new System.Windows.Forms.LinkLabel();
             this.btn_graficar = new System.Windows.Forms.Button();
             this.btn_comparar = new System.Windows.Forms.Button();
             this.graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.tb_simulaciones)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -112,7 +113,7 @@
             this.txt_costo_falt.Name = "txt_costo_falt";
             this.txt_costo_falt.Size = new System.Drawing.Size(36, 20);
             this.txt_costo_falt.TabIndex = 2;
-            this.txt_costo_falt.Text = "10";
+            this.txt_costo_falt.Text = "-10";
             // 
             // label3
             // 
@@ -129,7 +130,7 @@
             this.txt_costo_alm.Name = "txt_costo_alm";
             this.txt_costo_alm.Size = new System.Drawing.Size(36, 20);
             this.txt_costo_alm.TabIndex = 4;
-            this.txt_costo_alm.Text = "3";
+            this.txt_costo_alm.Text = "-3";
             // 
             // label4
             // 
@@ -156,14 +157,12 @@
             this.btn_simular.TabIndex = 8;
             this.btn_simular.Text = "Simular";
             this.btn_simular.UseVisualStyleBackColor = true;
+            this.btn_simular.Click += new System.EventHandler(this.btn_simular_Click);
             // 
             // tb_simulaciones
             // 
             this.tb_simulaciones.AllowUserToAddRows = false;
             this.tb_simulaciones.AllowUserToDeleteRows = false;
-            this.tb_simulaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tb_simulaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tb_simulaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tb_simulaciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -180,10 +179,11 @@
             this.col_dias_prox_pedido,
             this.col_dias_demora,
             this.col_pedido});
-            this.tb_simulaciones.Location = new System.Drawing.Point(12, 139);
+            this.tb_simulaciones.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_simulaciones.Location = new System.Drawing.Point(0, 129);
             this.tb_simulaciones.Name = "tb_simulaciones";
             this.tb_simulaciones.ReadOnly = true;
-            this.tb_simulaciones.Size = new System.Drawing.Size(1022, 163);
+            this.tb_simulaciones.Size = new System.Drawing.Size(1436, 270);
             this.tb_simulaciones.TabIndex = 9;
             // 
             // col_dia
@@ -346,55 +346,29 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Estrategias";
             // 
-            // lnk_A
+            // txt_res_C
             // 
-            this.lnk_A.AutoSize = true;
-            this.lnk_A.Location = new System.Drawing.Point(20, 23);
-            this.lnk_A.Name = "lnk_A";
-            this.lnk_A.Size = new System.Drawing.Size(67, 13);
-            this.lnk_A.TabIndex = 0;
-            this.lnk_A.TabStop = true;
-            this.lnk_A.Text = "Estrategia A:";
+            this.txt_res_C.Enabled = false;
+            this.txt_res_C.Location = new System.Drawing.Point(114, 72);
+            this.txt_res_C.Name = "txt_res_C";
+            this.txt_res_C.Size = new System.Drawing.Size(80, 20);
+            this.txt_res_C.TabIndex = 8;
             // 
-            // lnk_B
+            // txt_res_B
             // 
-            this.lnk_B.AutoSize = true;
-            this.lnk_B.Location = new System.Drawing.Point(20, 49);
-            this.lnk_B.Name = "lnk_B";
-            this.lnk_B.Size = new System.Drawing.Size(67, 13);
-            this.lnk_B.TabIndex = 1;
-            this.lnk_B.TabStop = true;
-            this.lnk_B.Text = "Estrategia B:";
+            this.txt_res_B.Enabled = false;
+            this.txt_res_B.Location = new System.Drawing.Point(114, 46);
+            this.txt_res_B.Name = "txt_res_B";
+            this.txt_res_B.Size = new System.Drawing.Size(80, 20);
+            this.txt_res_B.TabIndex = 7;
             // 
-            // lnk_C
+            // txt_res_A
             // 
-            this.lnk_C.AutoSize = true;
-            this.lnk_C.Location = new System.Drawing.Point(20, 75);
-            this.lnk_C.Name = "lnk_C";
-            this.lnk_C.Size = new System.Drawing.Size(67, 13);
-            this.lnk_C.TabIndex = 2;
-            this.lnk_C.TabStop = true;
-            this.lnk_C.Text = "Estrategia C:";
-            // 
-            // rad_A
-            // 
-            this.rad_A.AutoSize = true;
-            this.rad_A.Location = new System.Drawing.Point(94, 23);
-            this.rad_A.Name = "rad_A";
-            this.rad_A.Size = new System.Drawing.Size(14, 13);
-            this.rad_A.TabIndex = 3;
-            this.rad_A.TabStop = true;
-            this.rad_A.UseVisualStyleBackColor = true;
-            // 
-            // rad_B
-            // 
-            this.rad_B.AutoSize = true;
-            this.rad_B.Location = new System.Drawing.Point(94, 49);
-            this.rad_B.Name = "rad_B";
-            this.rad_B.Size = new System.Drawing.Size(14, 13);
-            this.rad_B.TabIndex = 4;
-            this.rad_B.TabStop = true;
-            this.rad_B.UseVisualStyleBackColor = true;
+            this.txt_res_A.Enabled = false;
+            this.txt_res_A.Location = new System.Drawing.Point(114, 20);
+            this.txt_res_A.Name = "txt_res_A";
+            this.txt_res_A.Size = new System.Drawing.Size(80, 20);
+            this.txt_res_A.TabIndex = 6;
             // 
             // rad_C
             // 
@@ -406,29 +380,55 @@
             this.rad_C.TabStop = true;
             this.rad_C.UseVisualStyleBackColor = true;
             // 
-            // txt_res_A
+            // rad_B
             // 
-            this.txt_res_A.Enabled = false;
-            this.txt_res_A.Location = new System.Drawing.Point(114, 20);
-            this.txt_res_A.Name = "txt_res_A";
-            this.txt_res_A.Size = new System.Drawing.Size(80, 20);
-            this.txt_res_A.TabIndex = 6;
+            this.rad_B.AutoSize = true;
+            this.rad_B.Location = new System.Drawing.Point(94, 49);
+            this.rad_B.Name = "rad_B";
+            this.rad_B.Size = new System.Drawing.Size(14, 13);
+            this.rad_B.TabIndex = 4;
+            this.rad_B.TabStop = true;
+            this.rad_B.UseVisualStyleBackColor = true;
             // 
-            // txt_res_B
+            // rad_A
             // 
-            this.txt_res_B.Enabled = false;
-            this.txt_res_B.Location = new System.Drawing.Point(114, 46);
-            this.txt_res_B.Name = "txt_res_B";
-            this.txt_res_B.Size = new System.Drawing.Size(80, 20);
-            this.txt_res_B.TabIndex = 7;
+            this.rad_A.AutoSize = true;
+            this.rad_A.Location = new System.Drawing.Point(94, 23);
+            this.rad_A.Name = "rad_A";
+            this.rad_A.Size = new System.Drawing.Size(14, 13);
+            this.rad_A.TabIndex = 3;
+            this.rad_A.TabStop = true;
+            this.rad_A.UseVisualStyleBackColor = true;
             // 
-            // txt_res_C
+            // lnk_C
             // 
-            this.txt_res_C.Enabled = false;
-            this.txt_res_C.Location = new System.Drawing.Point(114, 72);
-            this.txt_res_C.Name = "txt_res_C";
-            this.txt_res_C.Size = new System.Drawing.Size(80, 20);
-            this.txt_res_C.TabIndex = 8;
+            this.lnk_C.AutoSize = true;
+            this.lnk_C.Location = new System.Drawing.Point(20, 75);
+            this.lnk_C.Name = "lnk_C";
+            this.lnk_C.Size = new System.Drawing.Size(67, 13);
+            this.lnk_C.TabIndex = 2;
+            this.lnk_C.TabStop = true;
+            this.lnk_C.Text = "Estrategia C:";
+            // 
+            // lnk_B
+            // 
+            this.lnk_B.AutoSize = true;
+            this.lnk_B.Location = new System.Drawing.Point(20, 49);
+            this.lnk_B.Name = "lnk_B";
+            this.lnk_B.Size = new System.Drawing.Size(67, 13);
+            this.lnk_B.TabIndex = 1;
+            this.lnk_B.TabStop = true;
+            this.lnk_B.Text = "Estrategia B:";
+            // 
+            // lnk_A
+            // 
+            this.lnk_A.AutoSize = true;
+            this.lnk_A.Location = new System.Drawing.Point(20, 23);
+            this.lnk_A.Name = "lnk_A";
+            this.lnk_A.Size = new System.Drawing.Size(67, 13);
+            this.lnk_A.TabIndex = 0;
+            this.lnk_A.TabStop = true;
+            this.lnk_A.Text = "Estrategia A:";
             // 
             // btn_graficar
             // 
@@ -450,33 +450,44 @@
             // 
             // graph
             // 
-            chartArea1.Name = "ChartArea1";
-            this.graph.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.graph.Legends.Add(legend1);
-            this.graph.Location = new System.Drawing.Point(12, 308);
+            chartArea3.Name = "CostoPromedio";
+            this.graph.ChartAreas.Add(chartArea3);
+            this.graph.Dock = System.Windows.Forms.DockStyle.Bottom;
+            legend3.Name = "Legend1";
+            this.graph.Legends.Add(legend3);
+            this.graph.Location = new System.Drawing.Point(0, 399);
             this.graph.Name = "graph";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.graph.Series.Add(series1);
-            this.graph.Size = new System.Drawing.Size(1022, 163);
+            series3.ChartArea = "CostoPromedio";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.graph.Series.Add(series3);
+            this.graph.Size = new System.Drawing.Size(1436, 268);
             this.graph.TabIndex = 15;
             this.graph.Text = "chart1";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1436, 129);
+            this.flowLayoutPanel1.TabIndex = 16;
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1046, 483);
+            this.ClientSize = new System.Drawing.Size(1436, 667);
+            this.Controls.Add(this.tb_simulaciones);
             this.Controls.Add(this.graph);
             this.Controls.Add(this.btn_comparar);
             this.Controls.Add(this.btn_graficar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.tb_simulaciones);
             this.Controls.Add(this.btn_simular);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Principal";
             this.Text = "De Franceschi Andrea 62127 - García Majorel Álvaro 61856 - García Reyna Facundo 6" +
     "3583 - Oliveda Claudio 49594 - Varela Sofía 65126";
@@ -536,6 +547,7 @@
         private System.Windows.Forms.Button btn_graficar;
         private System.Windows.Forms.Button btn_comparar;
         private System.Windows.Forms.DataVisualization.Charting.Chart graph;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
 
