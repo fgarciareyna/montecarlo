@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.txt_cant_iteraciones = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -69,10 +72,12 @@
             this.txt_res_C = new System.Windows.Forms.TextBox();
             this.btn_graficar = new System.Windows.Forms.Button();
             this.btn_comparar = new System.Windows.Forms.Button();
+            this.graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.tb_simulaciones)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graph)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_cant_iteraciones
@@ -178,7 +183,7 @@
             this.tb_simulaciones.Location = new System.Drawing.Point(12, 139);
             this.tb_simulaciones.Name = "tb_simulaciones";
             this.tb_simulaciones.ReadOnly = true;
-            this.tb_simulaciones.Size = new System.Drawing.Size(1022, 332);
+            this.tb_simulaciones.Size = new System.Drawing.Size(1022, 163);
             this.tb_simulaciones.TabIndex = 9;
             // 
             // col_dia
@@ -443,11 +448,28 @@
             this.btn_comparar.Text = "Comparar";
             this.btn_comparar.UseVisualStyleBackColor = true;
             // 
+            // graph
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.graph.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.graph.Legends.Add(legend1);
+            this.graph.Location = new System.Drawing.Point(12, 308);
+            this.graph.Name = "graph";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.graph.Series.Add(series1);
+            this.graph.Size = new System.Drawing.Size(1022, 163);
+            this.graph.TabIndex = 15;
+            this.graph.Text = "chart1";
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1046, 483);
+            this.Controls.Add(this.graph);
             this.Controls.Add(this.btn_comparar);
             this.Controls.Add(this.btn_graficar);
             this.Controls.Add(this.groupBox3);
@@ -465,6 +487,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graph)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -512,6 +535,7 @@
         private System.Windows.Forms.LinkLabel lnk_A;
         private System.Windows.Forms.Button btn_graficar;
         private System.Windows.Forms.Button btn_comparar;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graph;
     }
 }
 
