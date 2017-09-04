@@ -10,12 +10,12 @@ namespace TP4
                 throw new NotSupportedException("La cantidad pedida debe ser positiva");
 
             if (cantidad <= 20)
-                return 20;
+                return -20;
 
             if (cantidad <= 40)
-                return 25;
+                return -25;
 
-            return 30;
+            return -30;
         }
     }
 }

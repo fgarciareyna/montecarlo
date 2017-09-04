@@ -30,9 +30,9 @@ namespace Montecarlo.Acumuladores
 
             Cantidad++;
 
-            var promedio = total / Cantidad;
+            Promedio = total / Cantidad;
 
-            return promedio;
+            return Promedio;
         }
 
         private int Cantidad { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Montecarlo.TablaDistribucion
 {
@@ -44,16 +45,18 @@ namespace Montecarlo.TablaDistribucion
                 throw new NotSupportedException("La suma de las probabilidades no puede ser mayor a 1");
 
             Valores = Valores.OrderBy(v => v.Valor).ToList();
-            RandomAsociados = new List<double>(Valores.Count) {[0] = 0};
+            RandomAsociados = new List<double> {0};
 
             for (var i = 1; i < Valores.Count; i++)
             {
-                RandomAsociados[i] = RandomAsociados[i - 1] + Valores[i - 1].ProbabilidadAsociada;
+                RandomAsociados.Add(RandomAsociados[i - 1] + Valores[i - 1].ProbabilidadAsociada);
             }
         }
 
         public double ObtenerValor()
         {
+            Thread.Sleep(20);
+
             var random = new Random().NextDouble();
 
             return ObtenerValor(random);
@@ -67,10 +70,10 @@ namespace Montecarlo.TablaDistribucion
             for (var i = 1; i < RandomAsociados.Count; i++)
             {
                 if (random < RandomAsociados[i])
-                    return RandomAsociados[i - 1];
+                    return Valores[i - 1].Valor;
             }
 
-            throw new NotSupportedException("Las probabilidades no suman 1");
+            return Valores.Last().Valor;
         }
 
         private IList<Probabilidad> Valores { get; set; }
