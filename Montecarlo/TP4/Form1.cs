@@ -121,7 +121,7 @@ namespace TP4
                 return false;
             }
 
-            if (mostrarDesde + cantidadAMostrar > cantidadIteraciones)
+            if (mostrarDesde + cantidadAMostrar - 1 > cantidadIteraciones)
             {
                 MessageBox.Show(@"La cantidad de simulaciones a realizar no es suficiente");
                 txt_cant_iteraciones.Focus();

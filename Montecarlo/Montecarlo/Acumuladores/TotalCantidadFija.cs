@@ -18,9 +18,9 @@ namespace Montecarlo.Acumuladores
 
             Valores.Add(valor);
 
-            var promedio = Valores.Sum();
+            var total = Valores.Sum();
 
-            return promedio;
+            return total;
         }
 
         private void EliminarPrimero()
