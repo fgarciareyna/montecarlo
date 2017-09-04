@@ -367,5 +367,20 @@ namespace TP4
 
             MessageBox.Show($@"La estrategia más conveniente es la {ganadora}");
         }
+
+        private void lnk_A_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show(@"Efectuar un pedido de 10 decenas cada 7 días");
+        }
+
+        private void lnk_B_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show(@"Efectuar un pedido de la suma de la demanda de los últimos 10 días (incluyendo el día actual) cada 10 días");
+        }
+
+        private void lnk_C_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show(@"Efectuar un pedido del promedio de la demanda de los últimos 10 días (incluyendo el día actual) cada 10 días");
+        }
     }
 }

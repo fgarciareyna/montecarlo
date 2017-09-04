@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.txt_cant_iteraciones = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -411,6 +411,7 @@
             this.lnk_C.TabIndex = 2;
             this.lnk_C.TabStop = true;
             this.lnk_C.Text = "Estrategia C:";
+            this.lnk_C.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_C_LinkClicked);
             // 
             // lnk_B
             // 
@@ -421,6 +422,7 @@
             this.lnk_B.TabIndex = 1;
             this.lnk_B.TabStop = true;
             this.lnk_B.Text = "Estrategia B:";
+            this.lnk_B.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_B_LinkClicked);
             // 
             // lnk_A
             // 
@@ -431,6 +433,7 @@
             this.lnk_A.TabIndex = 0;
             this.lnk_A.TabStop = true;
             this.lnk_A.Text = "Estrategia A:";
+            this.lnk_A.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnk_A_LinkClicked);
             // 
             // btn_comparar
             // 
@@ -444,36 +447,36 @@
             // 
             // graph
             // 
-            chartArea1.Name = "CostoPromedio";
-            this.graph.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "CostoPromedio";
+            this.graph.ChartAreas.Add(chartArea4);
             this.graph.Dock = System.Windows.Forms.DockStyle.Bottom;
-            legend1.Name = "Legend1";
-            this.graph.Legends.Add(legend1);
+            legend4.Name = "Legend1";
+            this.graph.Legends.Add(legend4);
             this.graph.Location = new System.Drawing.Point(0, 399);
             this.graph.Name = "graph";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "CostoPromedio";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.Legend = "Legend1";
-            series1.Name = "Estrategia A";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "CostoPromedio";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.Legend = "Legend1";
-            series2.Name = "Estrategia B";
-            series3.BorderWidth = 2;
-            series3.ChartArea = "CostoPromedio";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series3.Legend = "Legend1";
-            series3.Name = "Estrategia C";
-            this.graph.Series.Add(series1);
-            this.graph.Series.Add(series2);
-            this.graph.Series.Add(series3);
+            series10.BorderWidth = 2;
+            series10.ChartArea = "CostoPromedio";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series10.Legend = "Legend1";
+            series10.Name = "Estrategia A";
+            series11.BorderWidth = 2;
+            series11.ChartArea = "CostoPromedio";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series11.Legend = "Legend1";
+            series11.Name = "Estrategia B";
+            series12.BorderWidth = 2;
+            series12.ChartArea = "CostoPromedio";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series12.Legend = "Legend1";
+            series12.Name = "Estrategia C";
+            this.graph.Series.Add(series10);
+            this.graph.Series.Add(series11);
+            this.graph.Series.Add(series12);
             this.graph.Size = new System.Drawing.Size(1354, 268);
             this.graph.TabIndex = 15;
             this.graph.Text = "chart1";
-            title1.Name = "Costo Diario Promedio";
-            this.graph.Titles.Add(title1);
+            title4.Name = "Costo Diario Promedio";
+            this.graph.Titles.Add(title4);
             // 
             // flowLayoutPanel1
             // 
