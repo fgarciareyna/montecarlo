@@ -57,9 +57,22 @@
             this.txt_mostrar_desde = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_mostrar_cant = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lnk_A = new System.Windows.Forms.LinkLabel();
+            this.lnk_B = new System.Windows.Forms.LinkLabel();
+            this.lnk_C = new System.Windows.Forms.LinkLabel();
+            this.rad_A = new System.Windows.Forms.RadioButton();
+            this.rad_B = new System.Windows.Forms.RadioButton();
+            this.rad_C = new System.Windows.Forms.RadioButton();
+            this.txt_res_A = new System.Windows.Forms.TextBox();
+            this.txt_res_B = new System.Windows.Forms.TextBox();
+            this.txt_res_C = new System.Windows.Forms.TextBox();
+            this.btn_graficar = new System.Windows.Forms.Button();
+            this.btn_comparar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tb_simulaciones)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_cant_iteraciones
@@ -132,7 +145,7 @@
             // 
             // btn_simular
             // 
-            this.btn_simular.Location = new System.Drawing.Point(434, 82);
+            this.btn_simular.Location = new System.Drawing.Point(661, 30);
             this.btn_simular.Name = "btn_simular";
             this.btn_simular.Size = new System.Drawing.Size(75, 23);
             this.btn_simular.TabIndex = 8;
@@ -310,11 +323,134 @@
             this.txt_mostrar_cant.TabIndex = 2;
             this.txt_mostrar_cant.Text = "10";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txt_res_C);
+            this.groupBox3.Controls.Add(this.txt_res_B);
+            this.groupBox3.Controls.Add(this.txt_res_A);
+            this.groupBox3.Controls.Add(this.rad_C);
+            this.groupBox3.Controls.Add(this.rad_B);
+            this.groupBox3.Controls.Add(this.rad_A);
+            this.groupBox3.Controls.Add(this.lnk_C);
+            this.groupBox3.Controls.Add(this.lnk_B);
+            this.groupBox3.Controls.Add(this.lnk_A);
+            this.groupBox3.Location = new System.Drawing.Point(435, 12);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 107);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Estrategias";
+            // 
+            // lnk_A
+            // 
+            this.lnk_A.AutoSize = true;
+            this.lnk_A.Location = new System.Drawing.Point(20, 23);
+            this.lnk_A.Name = "lnk_A";
+            this.lnk_A.Size = new System.Drawing.Size(67, 13);
+            this.lnk_A.TabIndex = 0;
+            this.lnk_A.TabStop = true;
+            this.lnk_A.Text = "Estrategia A:";
+            // 
+            // lnk_B
+            // 
+            this.lnk_B.AutoSize = true;
+            this.lnk_B.Location = new System.Drawing.Point(20, 49);
+            this.lnk_B.Name = "lnk_B";
+            this.lnk_B.Size = new System.Drawing.Size(67, 13);
+            this.lnk_B.TabIndex = 1;
+            this.lnk_B.TabStop = true;
+            this.lnk_B.Text = "Estrategia B:";
+            // 
+            // lnk_C
+            // 
+            this.lnk_C.AutoSize = true;
+            this.lnk_C.Location = new System.Drawing.Point(20, 75);
+            this.lnk_C.Name = "lnk_C";
+            this.lnk_C.Size = new System.Drawing.Size(67, 13);
+            this.lnk_C.TabIndex = 2;
+            this.lnk_C.TabStop = true;
+            this.lnk_C.Text = "Estrategia C:";
+            // 
+            // rad_A
+            // 
+            this.rad_A.AutoSize = true;
+            this.rad_A.Location = new System.Drawing.Point(94, 23);
+            this.rad_A.Name = "rad_A";
+            this.rad_A.Size = new System.Drawing.Size(14, 13);
+            this.rad_A.TabIndex = 3;
+            this.rad_A.TabStop = true;
+            this.rad_A.UseVisualStyleBackColor = true;
+            // 
+            // rad_B
+            // 
+            this.rad_B.AutoSize = true;
+            this.rad_B.Location = new System.Drawing.Point(94, 49);
+            this.rad_B.Name = "rad_B";
+            this.rad_B.Size = new System.Drawing.Size(14, 13);
+            this.rad_B.TabIndex = 4;
+            this.rad_B.TabStop = true;
+            this.rad_B.UseVisualStyleBackColor = true;
+            // 
+            // rad_C
+            // 
+            this.rad_C.AutoSize = true;
+            this.rad_C.Location = new System.Drawing.Point(94, 75);
+            this.rad_C.Name = "rad_C";
+            this.rad_C.Size = new System.Drawing.Size(14, 13);
+            this.rad_C.TabIndex = 5;
+            this.rad_C.TabStop = true;
+            this.rad_C.UseVisualStyleBackColor = true;
+            // 
+            // txt_res_A
+            // 
+            this.txt_res_A.Enabled = false;
+            this.txt_res_A.Location = new System.Drawing.Point(114, 20);
+            this.txt_res_A.Name = "txt_res_A";
+            this.txt_res_A.Size = new System.Drawing.Size(80, 20);
+            this.txt_res_A.TabIndex = 6;
+            // 
+            // txt_res_B
+            // 
+            this.txt_res_B.Enabled = false;
+            this.txt_res_B.Location = new System.Drawing.Point(114, 46);
+            this.txt_res_B.Name = "txt_res_B";
+            this.txt_res_B.Size = new System.Drawing.Size(80, 20);
+            this.txt_res_B.TabIndex = 7;
+            // 
+            // txt_res_C
+            // 
+            this.txt_res_C.Enabled = false;
+            this.txt_res_C.Location = new System.Drawing.Point(114, 72);
+            this.txt_res_C.Name = "txt_res_C";
+            this.txt_res_C.Size = new System.Drawing.Size(80, 20);
+            this.txt_res_C.TabIndex = 8;
+            // 
+            // btn_graficar
+            // 
+            this.btn_graficar.Location = new System.Drawing.Point(661, 56);
+            this.btn_graficar.Name = "btn_graficar";
+            this.btn_graficar.Size = new System.Drawing.Size(75, 23);
+            this.btn_graficar.TabIndex = 13;
+            this.btn_graficar.Text = "Graficar";
+            this.btn_graficar.UseVisualStyleBackColor = true;
+            // 
+            // btn_comparar
+            // 
+            this.btn_comparar.Location = new System.Drawing.Point(661, 82);
+            this.btn_comparar.Name = "btn_comparar";
+            this.btn_comparar.Size = new System.Drawing.Size(75, 23);
+            this.btn_comparar.TabIndex = 14;
+            this.btn_comparar.Text = "Comparar";
+            this.btn_comparar.UseVisualStyleBackColor = true;
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1046, 483);
+            this.Controls.Add(this.btn_comparar);
+            this.Controls.Add(this.btn_graficar);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tb_simulaciones);
@@ -327,6 +463,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -362,6 +500,18 @@
         private System.Windows.Forms.TextBox txt_mostrar_desde;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txt_mostrar_cant;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txt_res_C;
+        private System.Windows.Forms.TextBox txt_res_B;
+        private System.Windows.Forms.TextBox txt_res_A;
+        private System.Windows.Forms.RadioButton rad_C;
+        private System.Windows.Forms.RadioButton rad_B;
+        private System.Windows.Forms.RadioButton rad_A;
+        private System.Windows.Forms.LinkLabel lnk_C;
+        private System.Windows.Forms.LinkLabel lnk_B;
+        private System.Windows.Forms.LinkLabel lnk_A;
+        private System.Windows.Forms.Button btn_graficar;
+        private System.Windows.Forms.Button btn_comparar;
     }
 }
 
