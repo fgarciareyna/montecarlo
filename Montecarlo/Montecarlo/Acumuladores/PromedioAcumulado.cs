@@ -9,13 +9,13 @@ namespace Montecarlo.Acumuladores
             Cantidad = 0;
             Promedio = 0;
         }
-        public PromedioAcumulado(decimal valor)
+        public PromedioAcumulado(double valor)
         {
             Cantidad = 1;
             Promedio = valor;
         }
 
-        public PromedioAcumulado(int cantidad, decimal promedio)
+        public PromedioAcumulado(int cantidad, double promedio)
         {
             if (cantidad <= 0)
                 throw new NotSupportedException("La cantidad de valores debe ser un número positivo");
@@ -24,7 +24,7 @@ namespace Montecarlo.Acumuladores
             Promedio = promedio;
         }
 
-        public decimal CalcularSiguiente(decimal valor)
+        public double CalcularSiguiente(double valor)
         {
             var total = Promedio * Cantidad + valor;
 
@@ -36,6 +36,6 @@ namespace Montecarlo.Acumuladores
         }
 
         private int Cantidad { get; set; }
-        public decimal Promedio { get; protected set; }
+        public double Promedio { get; protected set; }
     }
 }

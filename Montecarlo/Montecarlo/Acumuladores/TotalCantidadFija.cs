@@ -8,10 +8,10 @@ namespace Montecarlo.Acumuladores
         public TotalCantidadFija(int cantidad)
         {
             Cantidad = cantidad;
-            Valores = new List<decimal>(Cantidad);
+            Valores = new List<double>(Cantidad);
         }
 
-        public decimal CalcularSiguiente(decimal valor)
+        public double CalcularSiguiente(double valor)
         {
             if (Valores.Count == Cantidad)
                 EliminarPrimero();
@@ -29,6 +29,6 @@ namespace Montecarlo.Acumuladores
         }
 
         private int Cantidad { get; }
-        private IList<decimal> Valores { get; }
+        private IList<double> Valores { get; }
     }
 }

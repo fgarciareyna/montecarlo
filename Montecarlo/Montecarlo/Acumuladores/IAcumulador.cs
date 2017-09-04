@@ -2,6 +2,6 @@
 {
     public interface IAcumulador
     {
-        decimal CalcularSiguiente(decimal valor);
+        double CalcularSiguiente(double valor);
     }
 }

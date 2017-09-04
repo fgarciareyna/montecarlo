@@ -6,17 +6,17 @@
         {
             Total = 0;
         }
-        public TotalAcumulado(decimal valor)
+        public TotalAcumulado(double valor)
         {
             Total = valor;
         }
 
-        public decimal CalcularSiguiente(decimal valor)
+        public double CalcularSiguiente(double valor)
         {
             Total += valor;
 
             return Total;
         }
-        public decimal Total { get; protected set; }
+        public double Total { get; protected set; }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Montecarlo
+namespace Montecarlo.TablaDistribucion
 {
     public class DistribucionAleatoria
     {
@@ -13,7 +13,7 @@ namespace Montecarlo
             GenerarTablaRandom();
         }
 
-        public DistribucionAleatoria(decimal valor, decimal probabilidadAsociada)
+        public DistribucionAleatoria(double valor, double probabilidadAsociada)
         {
             var probabilidad = new Probabilidad(valor, probabilidadAsociada);
 
@@ -29,7 +29,7 @@ namespace Montecarlo
             GenerarTablaRandom();
         }
 
-        public void AgregarProbabilidad(decimal valor, decimal probabilidadAsociada)
+        public void AgregarProbabilidad(double valor, double probabilidadAsociada)
         {
             var probabilidad = new Probabilidad(valor, probabilidadAsociada);
 
@@ -44,7 +44,7 @@ namespace Montecarlo
                 throw new NotSupportedException("La suma de las probabilidades no puede ser mayor a 1");
 
             Valores = Valores.OrderBy(v => v.Valor).ToList();
-            RandomAsociados = new List<decimal>(Valores.Count) {[0] = 0};
+            RandomAsociados = new List<double>(Valores.Count) {[0] = 0};
 
             for (var i = 1; i < Valores.Count; i++)
             {
@@ -52,20 +52,14 @@ namespace Montecarlo
             }
         }
 
-        public decimal? ObtenerValor()
+        public double ObtenerValor()
         {
-            var random = (decimal) new Random().NextDouble();
+            var random = new Random().NextDouble();
 
-            for (var i = 1; i < RandomAsociados.Count; i++)
-            {
-                if (random < RandomAsociados[i])
-                    return RandomAsociados[i - 1];
-            }
-
-            return null;
+            return ObtenerValor(random);
         }
 
-        public decimal? ObtenerValor(decimal random)
+        public double ObtenerValor(double random)
         {
             if (random < 0 || random > 1)
                 throw new NotSupportedException("El número aleatorio debe estar entre 0 y 1");
@@ -76,10 +70,10 @@ namespace Montecarlo
                     return RandomAsociados[i - 1];
             }
 
-            return null;
+            throw new NotSupportedException("Las probabilidades no suman 1");
         }
 
         private IList<Probabilidad> Valores { get; set; }
-        private IList<decimal> RandomAsociados { get; set; }
+        private IList<double> RandomAsociados { get; set; }
     }
 }
