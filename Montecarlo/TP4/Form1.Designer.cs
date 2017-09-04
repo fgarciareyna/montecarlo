@@ -451,14 +451,17 @@
             this.graph.Legends.Add(legend1);
             this.graph.Location = new System.Drawing.Point(0, 399);
             this.graph.Name = "graph";
+            series1.BorderWidth = 2;
             series1.ChartArea = "CostoPromedio";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
             series1.Legend = "Legend1";
             series1.Name = "Estrategia A";
+            series2.BorderWidth = 2;
             series2.ChartArea = "CostoPromedio";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
             series2.Legend = "Legend1";
             series2.Name = "Estrategia B";
+            series3.BorderWidth = 2;
             series3.ChartArea = "CostoPromedio";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
             series3.Legend = "Legend1";
