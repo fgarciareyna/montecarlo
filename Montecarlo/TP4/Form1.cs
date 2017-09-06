@@ -147,8 +147,8 @@ namespace TP4
             const int diasEntrePedidos = 7;
 
             var stock = int.Parse(txt_stock_inicial.Text);
-            var precioAlmacenamiento = Math.Round(double.Parse(txt_costo_alm.Text), Decimales);
-            var precioFaltante = Math.Round(double.Parse(txt_costo_falt.Text), Decimales);
+            var precioAlmacenamiento = Math.Round(double.Parse(txt_costo_alm.Text), Decimales) * 10;
+            var precioFaltante = Math.Round(double.Parse(txt_costo_falt.Text), Decimales) * 10;
 
             var simulaciones = int.Parse(txt_cant_iteraciones.Text);
             var mostrarDesde = int.Parse(txt_mostrar_desde.Text);
@@ -210,8 +210,8 @@ namespace TP4
             const int diasEntrePedidos = 10;
 
             var stock = int.Parse(txt_stock_inicial.Text);
-            var precioAlmacenamiento = Math.Round(double.Parse(txt_costo_alm.Text), Decimales);
-            var precioFaltante = Math.Round(double.Parse(txt_costo_falt.Text), Decimales);
+            var precioAlmacenamiento = Math.Round(double.Parse(txt_costo_alm.Text), Decimales) * 10;
+            var precioFaltante = Math.Round(double.Parse(txt_costo_falt.Text), Decimales) * 10;
 
             var simulaciones = int.Parse(txt_cant_iteraciones.Text);
             var mostrarDesde = int.Parse(txt_mostrar_desde.Text);
@@ -279,8 +279,8 @@ namespace TP4
             const int diasEntrePedidos = 10;
 
             var stock = int.Parse(txt_stock_inicial.Text);
-            var precioAlmacenamiento = Math.Round(double.Parse(txt_costo_alm.Text), Decimales);
-            var precioFaltante = Math.Round(double.Parse(txt_costo_falt.Text), Decimales);
+            var precioAlmacenamiento = Math.Round(double.Parse(txt_costo_alm.Text), Decimales) * 10;
+            var precioFaltante = Math.Round(double.Parse(txt_costo_falt.Text), Decimales) * 10;
 
             var simulaciones = int.Parse(txt_cant_iteraciones.Text);
             var mostrarDesde = int.Parse(txt_mostrar_desde.Text);
