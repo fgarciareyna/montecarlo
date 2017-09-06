@@ -164,8 +164,8 @@ namespace TP4
             for (var dia = 1; dia <= simulaciones; dia++)
             {
                 //Pedido
-                diasProximoPedido = diasProximoPedido > 0 ? diasProximoPedido - 1 : diasEntrePedidos;
-                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : -1;
+                diasProximoPedido = diasProximoPedido > 0 ? diasProximoPedido - 1 : diasEntrePedidos - 1;
+                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : - 1;
                 var pedido = demora == 0 ? cantidadAPedir : 0;
                 stock += pedido;
 
@@ -228,8 +228,8 @@ namespace TP4
             for (var dia = 1; dia <= simulaciones; dia++)
             {
                 //Pedido
-                diasProximoPedido = diasProximoPedido > 0 ? diasProximoPedido - 1 : diasEntrePedidos;
-                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : -1;
+                diasProximoPedido = diasProximoPedido > 0 ? diasProximoPedido - 1 : diasEntrePedidos - 1;
+                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : - 1;
                 var demanda = (int)_demanda.ObtenerValor();
                 var cantidad = (int) acumuladorCantidadAPedir.CalcularSiguiente(demanda);
 
@@ -297,8 +297,8 @@ namespace TP4
             for (var dia = 1; dia <= simulaciones; dia++)
             {
                 //Pedido
-                diasProximoPedido = diasProximoPedido > 0 ? diasProximoPedido - 1 : diasEntrePedidos;
-                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : -1;
+                diasProximoPedido = diasProximoPedido > 0 ? diasProximoPedido - 1 : diasEntrePedidos - 1;
+                demora = demora > 0 ? demora - 1 : diasProximoPedido == 0 ? (int)_demora.ObtenerValor() : - 1;
                 var demanda = (int)_demanda.ObtenerValor();
                 var cantidad = (int)acumuladorCantidadAPedir.CalcularSiguiente(demanda);
 
