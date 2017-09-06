@@ -175,7 +175,7 @@ namespace TP4
                 stock -= ventas;
 
                 //Costos
-                var costoPedido = demora == 0 && diasProximoPedido == 0 ? Math.Round(CostoPedido.ObtenerCosto(cantidadAPedir), Decimales) : 0;
+                var costoPedido = demora <= 0 && diasProximoPedido == 0 ? Math.Round(CostoPedido.ObtenerCosto(cantidadAPedir), Decimales) : 0;
                 var costoFaltante = Math.Round((demanda - ventas) * precioFaltante, Decimales);
                 var costoAlmacenamiento = Math.Round(stock * precioAlmacenamiento, Decimales);
                 var costoTotal = Math.Round(costoFaltante + costoAlmacenamiento + costoPedido, Decimales);
@@ -244,7 +244,7 @@ namespace TP4
                 stock -= ventas;
 
                 //Costos
-                var costoPedido = demora == 0 && diasProximoPedido == 0 ? Math.Round(CostoPedido.ObtenerCosto(cantidadAPedir), Decimales) : 0;
+                var costoPedido = demora <= 0 && diasProximoPedido == 0 ? Math.Round(CostoPedido.ObtenerCosto(cantidadAPedir), Decimales) : 0;
                 var costoFaltante = Math.Round((demanda - ventas) * precioFaltante, Decimales);
                 var costoAlmacenamiento = Math.Round(stock * precioAlmacenamiento, Decimales);
                 var costoTotal = Math.Round(costoFaltante + costoAlmacenamiento + costoPedido, Decimales);
@@ -313,7 +313,7 @@ namespace TP4
                 stock -= ventas;
 
                 //Costos
-                var costoPedido = demora == 0 && diasProximoPedido == 0 ? Math.Round(CostoPedido.ObtenerCosto(cantidadAPedir), Decimales) : 0;
+                var costoPedido = demora <= 0 && diasProximoPedido == 0 ? Math.Round(CostoPedido.ObtenerCosto(cantidadAPedir), Decimales) : 0;
                 var costoFaltante = Math.Round((demanda - ventas) * precioFaltante, Decimales);
                 var costoAlmacenamiento = Math.Round(stock * precioAlmacenamiento, Decimales);
                 var costoTotal = Math.Round(costoFaltante + costoAlmacenamiento + costoPedido, Decimales);
